@@ -11,7 +11,7 @@ export default function LoginScreen({ navigation }) {
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 console.log('Usuário logado:', userCredential.user)
-                navigation.navigate('Home')
+                navigation.replace('Home')
             })
             .catch(error => {
                 Alert.alert('Erro ao logar', error.message)

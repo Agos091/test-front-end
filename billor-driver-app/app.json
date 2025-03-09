@@ -6,18 +6,33 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.billordriverapp.ios",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Este app usa a câmera para capturar documentos relacionados às cargas.",
+        "NSPhotoLibraryUsageDescription": "Este aplicativo precisa acessar suas fotos para permitir o upload de documentos."
+      }
+    },
     "android": {
       "package": "com.billor.driverapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "ios": {
-      "supportsTablet": true
     },
     "extra": {
       "eas": {
