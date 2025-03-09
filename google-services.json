@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766708698044",
+    "project_id": "billordriverapp",
+    "storage_bucket": "billordriverapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766708698044:android:8e0f96cfea702ad564f9b9",
+        "android_client_info": {
+          "package_name": "com.billordriverAndroidTesteAgos.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMyW_swJU17f119RTSMGfU4Lsm2UNqDHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
