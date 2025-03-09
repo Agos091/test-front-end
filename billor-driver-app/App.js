@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import app from './firebaseConfig'
+import { StyleSheet, View } from 'react-native'
+import { app } from './firebaseConfig'
+import AppNavigator from './navigation/AppNavigator'
 
 export default function App() {
   useEffect(() => {
@@ -9,7 +10,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Testando conexão com Firebase!</Text>
+      <AppNavigator />
     </View>
   )
 }
@@ -17,7 +18,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 })
