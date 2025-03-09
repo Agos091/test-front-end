@@ -36,7 +36,7 @@ export default function HomeScreen({ navigation }) {
 
             <Button
                 title="Meu Perfil"
-                onPress={() => alert('Perfil em breve')}
+                onPress={() => navigation.navigate('UserProfile')}
             />
 
             <Button
