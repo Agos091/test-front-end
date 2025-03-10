@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import AppNavigator from './navigation/AppNavigator'
 import * as Notifications from 'expo-notifications'
+import { AuthProvider } from './contexts/AuthContext'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -29,9 +30,11 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <AppNavigator />
-    </View>
+    <AuthProvider>
+      <View style={styles.container}>
+        <AppNavigator />
+      </View>
+    </AuthProvider>
   )
 }
 

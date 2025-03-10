@@ -1,5 +1,6 @@
 import { View, StyleSheet } from 'react-native'
 import { Title, Paragraph, Button, Card } from 'react-native-paper'
+import MapView, { Marker } from 'react-native-maps'
 
 export default function LoadDetailScreen({ navigation, route }) {
     const { load } = route.params
@@ -17,6 +18,22 @@ export default function LoadDetailScreen({ navigation, route }) {
                     </Button>
                 </Card.Actions>
             </Card>
+
+            <MapView
+                style={styles.map}
+                initialRegion={{
+                    latitude: load.location.latitude,
+                    longitude: load.location.longitude,
+                    latitudeDelta: 0.05,
+                    longitudeDelta: 0.05,
+                }}
+            >
+                <Marker
+                    coordinate={load.location}
+                    title={load.title}
+                    description={`Status: ${load.status}`}
+                />
+            </MapView>
         </View>
     )
 }
@@ -24,11 +41,12 @@ export default function LoadDetailScreen({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        padding: 20,
         backgroundColor: '#fff',
     },
     card: {
-        padding: 15,
+        margin: 15,
+    },
+    map: {
+        flex: 1,
     },
 })

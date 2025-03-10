@@ -16,8 +16,10 @@
       "bundleIdentifier": "com.billordriverapp.ios",
       "infoPlist": {
         "NSCameraUsageDescription": "Este app usa a câmera para capturar documentos relacionados às cargas.",
-        "NSPhotoLibraryUsageDescription": "Este aplicativo precisa acessar suas fotos para permitir o upload de documentos."
-      }
+        "NSPhotoLibraryUsageDescription": "Este aplicativo precisa acessar suas fotos para permitir o upload de documentos.",
+        "NSLocationWhenInUseUsageDescription": "Este aplicativo precisa acessar sua localização para exibir mapas com detalhes das cargas."
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "package": "com.billor.driverapp",
@@ -30,6 +32,8 @@
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
         "RECEIVE_BOOT_COMPLETED"
       ]
     },
