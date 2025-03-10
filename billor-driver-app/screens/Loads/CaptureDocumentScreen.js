@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { View, Button, Image, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
+import { Button, Card, Title } from 'react-native-paper'
 import * as ImagePicker from 'expo-image-picker'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { storage } from '../../firebaseConfig'
+import { Image } from 'react-native'
 
 export default function CaptureDocumentScreen() {
     const [image, setImage] = useState(null)
@@ -11,7 +13,7 @@ export default function CaptureDocumentScreen() {
         const { status } = await ImagePicker.requestCameraPermissionsAsync()
 
         if (status !== 'granted') {
-            alert('Permissão para câmera negada.')
+            Alert.alert('Permissão negada', 'Permissão para câmera negada.')
             return
         }
 
@@ -51,12 +53,22 @@ export default function CaptureDocumentScreen() {
 
     return (
         <View style={styles.container}>
-            <Button title="Capturar Documento" onPress={handleCaptureImage} />
+            <Title style={styles.title}>Capturar Documento</Title>
+
+            <Card style={styles.card}>
+                <Card.Actions>
+                    <Button mode="contained" onPress={handleCaptureImage}>
+                        Abrir Câmera
+                    </Button>
+                </Card.Actions>
+            </Card>
 
             {image && (
                 <>
                     <Image source={{ uri: image }} style={styles.preview} />
-                    <Button title="Enviar para Firebase" onPress={uploadImageToFirebase} />
+                    <Button mode="outlined" onPress={uploadImageToFirebase} style={styles.uploadButton}>
+                        Enviar para Firebase
+                    </Button>
                 </>
             )}
         </View>
@@ -66,13 +78,25 @@ export default function CaptureDocumentScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+    },
+    title: {
+        marginBottom: 20,
+    },
+    card: {
+        marginBottom: 20,
+        width: '100%',
     },
     preview: {
         width: 300,
         height: 300,
         marginVertical: 20,
+        borderRadius: 10,
+    },
+    uploadButton: {
+        marginTop: 10,
     },
 })

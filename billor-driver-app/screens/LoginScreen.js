@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
+import { TextInput, Button, Title } from 'react-native-paper'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 
@@ -9,38 +10,43 @@ export default function LoginScreen({ navigation }) {
 
     const handleLogin = () => {
         signInWithEmailAndPassword(auth, email, password)
-            .then(userCredential => {
-                console.log('Usuário logado:', userCredential.user)
-                navigation.replace('Home')
-            })
-            .catch(error => {
-                Alert.alert('Erro ao logar', error.message)
-                console.log(error)
-            })
+            .then(() => navigation.navigate('Home'))
+            .catch(error => Alert.alert('Erro', error.message))
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Faça login</Text>
+            <Title style={styles.title}>🚚 Billor Driver App</Title>
 
             <TextInput
+                label="Email"
+                mode="outlined"
                 style={styles.input}
-                placeholder="Email"
-                keyboardType="email-address"
-                autoCapitalize="none"
                 value={email}
                 onChangeText={setEmail}
+                autoCapitalize="none"
             />
 
             <TextInput
+                label="Senha"
+                mode="outlined"
                 style={styles.input}
-                placeholder="Senha"
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
             />
 
-            <Button title="Entrar" onPress={handleLogin} />
+            <Button mode="contained" onPress={handleLogin} style={styles.button}>
+                Entrar
+            </Button>
+            <Button
+                mode="text"
+                onPress={() => navigation.navigate('Register')}
+                style={{ marginTop: 10 }}
+            >
+                Criar uma nova conta
+            </Button>
+
         </View>
     )
 }
@@ -48,20 +54,20 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         padding: 20,
+        justifyContent: 'center',
+        backgroundColor: '#fff',
     },
     title: {
-        fontSize: 26,
+        textAlign: 'center',
+        fontSize: 24,
         marginBottom: 20,
-        alignSelf: 'center',
     },
     input: {
-        height: 45,
-        borderColor: '#ddd',
-        borderWidth: 1,
-        paddingHorizontal: 10,
-        borderRadius: 8,
         marginBottom: 10,
+    },
+    button: {
+        marginTop: 10,
+        padding: 5,
     },
 })

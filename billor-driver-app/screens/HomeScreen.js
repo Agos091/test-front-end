@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { View, Text, Button, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
+import { Button, Title, Card } from 'react-native-paper'
 import * as Notifications from 'expo-notifications'
 
 export default function HomeScreen({ navigation }) {
@@ -27,27 +28,38 @@ export default function HomeScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Home do Motorista</Text>
+            <Title style={styles.title}>🚚 Bem-vindo, Motorista!</Title>
 
-            <Button
-                title="Minhas Cargas"
-                onPress={() => navigation.navigate('LoadsList')}
-            />
+            <Card style={styles.card}>
+                <Card.Title title="Minhas Cargas" />
+                <Card.Actions>
+                    <Button mode="contained" onPress={() => navigation.navigate('LoadsList')}>
+                        Abrir
+                    </Button>
+                </Card.Actions>
+            </Card>
 
-            <Button
-                title="Meu Perfil"
-                onPress={() => navigation.navigate('UserProfile')}
-            />
+            <Card style={styles.card}>
+                <Card.Title title="Meu Perfil" />
+                <Card.Actions>
+                    <Button mode="contained" onPress={() => navigation.navigate('UserProfile')}>
+                        Abrir
+                    </Button>
+                </Card.Actions>
+            </Card>
 
-            <Button
-                title="Abrir Chat"
-                onPress={() => navigation.navigate('ChatList')}
-            />
+            <Card style={styles.card}>
+                <Card.Title title="Chat de Suporte" />
+                <Card.Actions>
+                    <Button mode="contained" onPress={() => navigation.navigate('ChatList')}>
+                        Abrir
+                    </Button>
+                </Card.Actions>
+            </Card>
 
-            <Button
-                title="Testar Push"
-                onPress={sendTestNotification}
-            />
+            <Button mode="outlined" onPress={sendTestNotification} style={styles.testButton}>
+                Testar Notificação
+            </Button>
         </View>
     )
 }
@@ -55,13 +67,20 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
         padding: 20,
-        gap: 10
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+        gap: 15,
     },
     title: {
         fontSize: 24,
         marginBottom: 20,
+        textAlign: 'center',
+    },
+    card: {
+        padding: 10,
+    },
+    testButton: {
+        marginTop: 10,
     },
 })

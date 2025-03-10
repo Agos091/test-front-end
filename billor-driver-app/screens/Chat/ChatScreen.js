@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { View, Text, FlatList, TextInput, Button, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
+import { TextInput, Button, Card, Paragraph, Title } from 'react-native-paper'
 import { collection, addDoc, orderBy, query, onSnapshot, serverTimestamp } from 'firebase/firestore'
 import { firestore, auth } from '../../firebaseConfig'
 
@@ -32,7 +33,7 @@ export default function ChatScreen({ route }) {
             text: newMessage,
             createdAt: serverTimestamp(),
             userId: user.uid,
-            userName: user.email, 
+            userName: user.email,
         })
 
         setNewMessage('')
@@ -40,25 +41,30 @@ export default function ChatScreen({ route }) {
 
     return (
         <View style={styles.container}>
+            <Title style={styles.title}>Conversa</Title>
+
             <FlatList
                 data={messages}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                    <View style={styles.message}>
-                        <Text style={styles.userName}>{item.userName}:</Text>
-                        <Text>{item.text}</Text>
-                    </View>
+                    <Card style={styles.messageCard}>
+                        <Card.Content>
+                            <Paragraph style={styles.userName}>{item.userName}:</Paragraph>
+                            <Paragraph>{item.text}</Paragraph>
+                        </Card.Content>
+                    </Card>
                 )}
             />
 
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
+                    mode="outlined"
                     value={newMessage}
                     onChangeText={setNewMessage}
                     placeholder="Digite sua mensagem"
                 />
-                <Button title="Enviar" onPress={sendMessage} />
+                <Button mode="contained" onPress={sendMessage}>Enviar</Button>
             </View>
         </View>
     )
@@ -68,28 +74,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
+        backgroundColor: '#fff',
     },
-    message: {
-        padding: 10,
+    title: {
+        marginBottom: 20,
+    },
+    messageCard: {
         marginVertical: 5,
-        backgroundColor: '#e7e7e7',
-        borderRadius: 10,
     },
     userName: {
         fontWeight: 'bold',
     },
     inputContainer: {
         flexDirection: 'row',
-        padding: 10,
         alignItems: 'center',
-        gap: 10
+        paddingVertical: 10,
+        gap: 10,
     },
     input: {
         flex: 1,
-        height: 40,
-        borderColor: '#ddd',
-        borderWidth: 1,
-        paddingHorizontal: 10,
-        borderRadius: 8,
     },
 })

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
 import { firestore, auth } from '../firebaseConfig'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { TextInput, Button, Card, Title } from 'react-native-paper'
 
 export default function UserProfileScreen() {
     const [nome, setNome] = useState('')
@@ -16,7 +17,7 @@ export default function UserProfileScreen() {
         const user = auth.currentUser
         if (!user) return
 
-        setEmail(user.email) 
+        setEmail(user.email)
 
         const docRef = doc(firestore, 'usuarios', user.uid)
         const docSnap = await getDoc(docRef)
@@ -43,31 +44,41 @@ export default function UserProfileScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Perfil do Usuário</Text>
+            <Title style={styles.title}>Meu Perfil</Title>
 
-            <TextInput
-                style={styles.input}
-                placeholder="Nome"
-                value={nome}
-                onChangeText={setNome}
-            />
+            <Card style={styles.card}>
+                <Card.Content>
+                    <TextInput
+                        mode="outlined"
+                        label="Nome"
+                        value={nome}
+                        onChangeText={setNome}
+                        style={styles.input}
+                    />
 
-            <TextInput
-                style={styles.input}
-                placeholder="Telefone"
-                value={telefone}
-                onChangeText={setTelefone}
-                keyboardType="phone-pad"
-            />
+                    <TextInput
+                        mode="outlined"
+                        label="Telefone"
+                        value={telefone}
+                        onChangeText={setTelefone}
+                        keyboardType="phone-pad"
+                        style={styles.input}
+                    />
 
-            <TextInput
-                style={styles.input}
-                placeholder="Email"
-                value={email}
-                editable={false}
-            />
-
-            <Button title="Salvar Alterações" onPress={handleSaveProfile} />
+                    <TextInput
+                        mode="outlined"
+                        label="Email"
+                        value={email}
+                        editable={false}
+                        style={styles.input}
+                    />
+                </Card.Content>
+                <Card.Actions>
+                    <Button mode="contained" onPress={handleSaveProfile}>
+                        Salvar Alterações
+                    </Button>
+                </Card.Actions>
+            </Card>
         </View>
     )
 }
@@ -76,13 +87,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        gap: 10
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+    },
+    title: {
+        textAlign: 'center',
+        marginBottom: 20,
+    },
+    card: {
+        padding: 10,
     },
     input: {
-        height: 40,
-        borderColor: '#ddd',
-        borderWidth: 1,
-        paddingHorizontal: 10,
-        borderRadius: 8,
+        marginBottom: 10,
     },
 })
