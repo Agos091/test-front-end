@@ -1,65 +1,109 @@
-![Alt Text](https://billor.us/images/logo.svg)
+# Billor Driver Mobile App
 
-# Billor Coding Challenge: Driver Mobile App
+This mobile application, developed with React Native, serves as a driver app for managing loads, capturing delivery-related documents, facilitating real-time chat communication, and handling push notifications.
 
-## Objective
+## 🚀 Technologies Chosen
 
-Develop a mobile application using React Native that functions as driver app. The app should enable user authentication, display and manage loads, capture and send document images, facilitate real-time chat communication, and provide push notifications, while also allowing users to manage their profile.
+### 🔹 React Native
+- **Why use:**
+  - Cross-platform development for both Android and iOS from a single codebase.
+  - Strong community support and a rich ecosystem.
 
-## Functional Requirements
+### 🔹 Expo
+- **Why use:**
+  - Simplifies setup and project configuration.
+  - Easy integration with native device features such as camera, maps, and push notifications.
 
-1. **User Authentication:**
-   - Implement a login screen with form validation.
-   - Integrate with an authentication API (e.g., Firebase Auth or a custom API).
+### 🔹 Firebase (Auth, Firestore, Storage, and Cloud Messaging)
+- **Why use:**
+  - Secure authentication.
+  - Efficient storage of documents, images, and user data.
+  - Enables real-time chat and reliable push notifications.
 
-2. **Loads Management:**
-   - Display a list of loads with filtering and search capabilities.
-   - Provide a detailed view for each load, including additional information, map and relevant actions.
+### 🔹 Context API (React)
+- **Why use:**
+  - Simple yet effective global state management solution without additional complexity.
 
-3. **Documents Integration:**
-   - Use the device camera to capture and submit document images associated with loads.
+### 🔹 React Native Paper
+- **Why use:**
+  - Elegant UI with ready-to-use components for better UX and productivity.
 
-4. **Real-Time Chat:**
-   - Develop a real-time messaging system for communication between support agents and users.
-   - Maintain a conversation history for ongoing chats.
+### 🔹 React Native Maps
+- **Why use:**
+  - Clear and interactive visualization of load locations.
 
-5. **Push Notifications:**
-   - Integrate push notifications (e.g., via Firebase Cloud Messaging) to alert users about important updates.
-   - Handle notifications appropriately when the app is active, in the background, or closed.
+---
 
-6. **User Profile Management:**
-   - Provide a profile screen where users can update personal information and app settings.
+## ⚙️ How to Run the Project
 
-## Technical Requirements
+### 📌 Prerequisites
+- Node.js (18 or higher)
+- Expo CLI
+- Firebase account and project setup
 
-- **Technologies:**
-  - **React Native** with React Navigation for routing.
-  - State management using Context API or Redux.
-  - Integration with native device capabilities (camera, push notifications).
-  - External APIs for authentication, chat, and notifications.
+### 📌 Installation
 
-- **Best Practices:**
-  - Write clean, modularized, and reusable code.
-  - Ensure responsiveness and compatibility across iOS and Android platforms.
-  - Handle asynchronous operations, loading states, and error management gracefully.
-  - (Optional) Include unit tests for critical functionalities.
+```bash
+git clone <repo-url>
+cd billor-driver-app
+yarn install
+```
 
-- **Data:**
-  - Simulate or integrate with APIs for load management, chat, and authentication.
-  - Use mocks or public APIs where appropriate.
+### 📌 Firebase Configuration
 
-## Evaluation Criteria
+1. Create a [Firebase](https://firebase.google.com/) project and enable:
+   - Authentication (Email/Password)
+   - Firestore Database
+  - Storage
+  - Cloud Messaging (enable legacy API)
 
-- **Functionality:** Does the app meet the functional requirements (authentication, loads management, camera integration, chat, notifications, profile management)?
-- **Code Quality:** Is the project well-organized and does the code adhere to best practices?
-- **Use of Technologies:** Does the candidate demonstrate proficiency in React Native, state management, and native device integration?
-- **User Experience:** Is the application intuitive, responsive, and user-friendly?
-- **Problem-Solving:** How effectively are asynchronous operations, error management, and cross-platform compatibility handled?
+2. Download the configuration files (`google-services.json` for Android, `GoogleService-Info.plist` for iOS) and place them in the project root.
 
-## Submission
+3. Update your Firebase credentials in `firebaseConfig.js`.
 
-- Host your source code on a public repository (e.g., GitHub).
-- Provide clear instructions on how to run the project.
-- (Optional) Include documentation explaining your technical decisions.
+### 📌 Run the Project
 
-Good luck!
+```bash
+npx expo start
+```
+
+- Scan the QR Code displayed in the terminal with Expo Go on your smartphone or use an emulator.
+
+---
+
+## 📌 Features
+
+- Authentication (Login and Signup)
+- Load management with maps
+- Document capture and upload
+- Real-time chat
+- Push notifications
+- User profile management
+
+---
+
+## 🧪 Testing
+
+### ✅ Unit Testing
+
+Unit tests are configured using Jest and React Native Testing Library to ensure functionality:
+
+- Tests are available under `screens/__tests__`.
+- To run tests, execute:
+
+```bash
+yarn test
+```
+
+**Important**: If tests fail, ensure you've properly mocked Firebase methods and all dependencies are correctly imported.
+
+Example test scenarios:
+- Render screens correctly.
+- Simulate user interactions (form submission, text input).
+- Verify Firebase Authentication functions are called correctly.
+
+You may need to adjust mocks or test setup according to your local environment.
+
+---
+
+✅ **Your app is now ready to use!**

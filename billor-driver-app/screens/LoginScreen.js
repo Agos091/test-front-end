@@ -1,39 +1,37 @@
 import { useState } from 'react'
-import { View, StyleSheet, Alert } from 'react-native'
-import { TextInput, Button, Title } from 'react-native-paper'
+import { View, Text, StyleSheet, Alert } from 'react-native'
+import { TextInput, Button } from 'react-native-paper'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [senha, setSenha] = useState('')
 
     const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, senha)
             .then(() => navigation.navigate('Home'))
             .catch(error => Alert.alert('Erro', error.message))
     }
 
     return (
         <View style={styles.container}>
-            <Title style={styles.title}>🚚 Billor Driver App</Title>
+            <Text style={styles.title}>🚚 Billor Driver App</Text>
 
             <TextInput
                 label="Email"
-                mode="outlined"
-                style={styles.input}
+                placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
-                autoCapitalize="none"
+                testID="input-email"
             />
 
             <TextInput
-                label="Senha"
-                mode="outlined"
-                style={styles.input}
                 secureTextEntry
-                value={password}
-                onChangeText={setPassword}
+                placeholder="Senha"
+                value={senha}
+                onChangeText={setSenha}
+                testID="input-password"
             />
 
             <Button mode="contained" onPress={handleLogin} style={styles.button}>
@@ -63,11 +61,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginBottom: 20,
     },
-    input: {
-        marginBottom: 10,
-    },
     button: {
         marginTop: 10,
-        padding: 5,
     },
 })
